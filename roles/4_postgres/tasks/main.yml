@@ -1,0 +1,7 @@
+---
+ - name: insert/update HTML surrounded by custom markers after <body> line
+   blockinfile:
+     dest: /etc/yum.repos.d/CentOS-Base.repo
+     insertafter: "^gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6"
+     content: |
+       exclude=postgresql*

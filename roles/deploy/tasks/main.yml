@@ -1,0 +1,55 @@
+---
+ - name: Install Bundler
+   become_user: root
+   command: bash -lc "gem install bundler"
+ - name: bundle install
+   command: bash -lc "cd /home/centos/basic_rails_app; bundle install"
+ - name: Install rails
+   become_user: root
+   command: bash -lc "gem install rails"
+ - name: Execute ngrok
+   command: npm install ngrok -g
+ - name: Install rails
+   become_user: root
+   command: bash -lc "if [ ! -f /home/centos/basic_rails_app/tmp/pids/server.pid ]; then rails s -d; fi;"
+   args:
+     chdir: /home/centos/basic_rails_app
+ - name: download jq
+   get_url:
+     url: https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64
+     dest: /home/centos/jq
+     mode: 777 
+ - copy: 
+     src: /home/centos/jq
+     dest: /usr/bin  
+     remote_src: yes 
+     mode: 777 
+
+ - template:
+     src: /home/ubuntu/poc/roles/deploy/templates/ngrokrun
+     dest: /home/centos/ngrokrun
+     mode: 777
+
+ - name: run Ngrok
+   shell: |
+     nrgokStatus=`ps -ef | grep 'ngrok http 3000' | grep -v grep`
+     if [ -z $nrgokStatus ]
+     then
+       /home/centos/ngrokrun
+       echo -e "\n"
+       sleep 3
+       fi
+
+ - name: publish url
+   shell: |
+     cd /home/centos
+     curl http://localhost:4040/api/tunnels > tunnelinfo
+     echo "HTTPS URL"
+     jq '.tunnels[0].public_url' tunnelinfo
+     echo "HTTP URL"
+     jq '.tunnels[1].public_url' tunnelinfo
+   become_user: root
+   args:
+     executable: /bin/bash
+   register: shell
+ - debug: var=shell.stdout_lines 

@@ -1,0 +1,12 @@
+---
+- hosts: webservers
+  become: yes
+  gather_facts: yes
+  roles:
+  - users
+  - directories
+  - packages
+  - ruby
+  - git_clone
+  - postgres
+  - deploy   

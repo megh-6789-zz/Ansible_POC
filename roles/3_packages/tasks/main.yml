@@ -1,0 +1,22 @@
+---
+ - name: download nodesource
+   get_url:
+     url: http://rpm.nodesource.com/setup_4.x
+     dest: /home/centos/
+     mode: 0440
+ - name: Install setup_4.x , stdout goes to the specified file on the remote
+   shell: bash /home/centos/setup_4.x
+ - name: install nodejs
+   yum:
+     name: nodejs
+     state: present
+
+ - name: install nodesource
+
+   yum:
+     name: http://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-6-x86_64/pgdg-centos96-9.6-3.noarch.rpm
+     state: present
+
+
+
+

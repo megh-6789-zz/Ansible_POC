@@ -1,0 +1,31 @@
+---
+ - name: add user titan
+   user:
+     name=titan
+ - name: Make sure we have a 'titan' group
+   group:
+     name: titan
+     state: present
+
+ - name: Allow 'wheel' group to have passwordless sudo
+   lineinfile:
+     dest: /etc/sudoers
+     state: present
+     regexp: '^%wheel'
+     line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+
+ - name: add user to group
+   user:
+     name=titan
+     group=wheel 
+     password=""
+ - name: create directories
+   file:
+     path=/app/
+     state=directory
+     owner=titan
+     recurse=yes
+     group=titan
+     mode=700
+
+

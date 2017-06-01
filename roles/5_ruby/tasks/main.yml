@@ -1,0 +1,46 @@
+---
+ - name: "Install Common Libraries from CentOS mirror"
+   yum: state=present name={{ item }}
+   with_items:
+     - git
+     - unzip
+     - gcc-c++
+     - patch
+     - readline
+     - readline-devel
+     - zlib
+     - zlib-devel
+     - wget
+     - tar
+     - libyaml-devel
+     - libffi-devel
+     - openssl-devel 
+     - make
+     - bzip2
+     - autoconf
+     - automake
+     - libtool
+     - bison
+     - sqlite-devel
+ - name: running the rvm package through script
+   shell: |
+     version=`ruby --version`
+     if [ -z $version ]
+     then
+       curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+       curl -L get.rvm.io | bash -s stable
+       source /etc/profile.d/rvm.sh
+       rvm reload
+       rvm requirements run
+       rvm install 2.3.3
+       rvm use 2.3.3 --default
+       ruby --version
+     fi
+   become: yes
+   args:
+     executable: /bin/bash
+ - name: USername
+   command: echo $user
+   become: yes
+
+

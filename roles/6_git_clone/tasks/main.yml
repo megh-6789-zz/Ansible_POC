@@ -1,0 +1,20 @@
+---
+ - git:
+     repo: 'https://github.com/navya476/sampleRuby.git'
+     dest: /home/centos/basic_rails_app
+     force: yes
+#  - copy:
+#      src: /home/ubuntu/basic_rails_app.zip
+#      dest: /home/centos
+#      mode: 777
+#  - name: Creates directory
+#    file: path=/home/centos/titan_web state=directory
+#  - unarchive:
+#      src: /home/centos/titan_web.tar
+#      dest: /home/centos
+     # remote_src: True
+#      copy: no
+#  - name: Extract archive
+#    unarchive: src=/home/centos/basic_rails_app.zip
+#               dest=.
+#               copy=no

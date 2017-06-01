@@ -1,0 +1,13 @@
+---
+- name: create sub directories
+  file:
+    path=/app/{{ item }}/
+    state=directory
+    owner=titan
+    group=titan
+    mode=700
+  with_items:
+    - 'logs'
+    - 'files'
+    - 'config'
+    - 'install'
