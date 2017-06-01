@@ -4,9 +4,9 @@
   gather_facts: yes
   roles:
   - users
-  - directories
+  - subdir
   - packages
+  - postgres
   - ruby
   - git_clone
-  - postgres
-  - deploy   
+  - deploy 
