@@ -3,10 +3,10 @@
   become: yes
   gather_facts: yes
   roles:
-  - users
-  - subdir
-  - packages
-  - postgres
-  - ruby
-  - git_clone
+  - 1_users
+  - 2_subdir
+  - 3_packages
+  - 4_postgres
+  - 5_ruby
+  - 6_git_clone
   - deploy 
