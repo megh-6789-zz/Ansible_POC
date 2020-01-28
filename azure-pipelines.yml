@@ -15,4 +15,10 @@ steps:
    #liquibase --version
    echo "*****JavaPATH*****"
    which java
+   ls /usr/bin/java
+   sudo apt-get install libmysql-java
+   echo ****Install JDBC driver******
+   ls /usr/bin/java
+   echo ***Just CHECKING*****
+   ls /usr/share/java
   displayName: 'Install Liquibase'
