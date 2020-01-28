@@ -1,0 +1,18 @@
+pool:
+  vmImage: 'ubuntu-latest'
+
+
+
+steps:
+
+- script: |
+   sudo apt-get update
+   sudo apt-get install -y Openjdk-7-*
+   #sudo wget https://github.com/liquibase/liquibase/releases/download/v3.8.5/liquibase-3.8.5.tar.gz
+   #sudo tar -zxvf liquibase-3.8.5.tar.gz
+   #sudo chmod +x liquibase
+   #export PATH="/home/vsts/work/1/s:$PATH"
+   #liquibase --version
+   echo "*****JavaPATH*****"
+   which java
+  displayName: 'Install Liquibase'
