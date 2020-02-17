@@ -21,4 +21,5 @@ steps:
    #ls /usr/bin/java
    echo *********PATH**************
    pwd
+   ls
   displayName: 'Install Liquibase'
