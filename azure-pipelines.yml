@@ -9,6 +9,7 @@ steps:
    sudo apt-get update
    sudo apt-get install -y Openjdk-7-*
    sudo wget https://github.com/liquibase/liquibase/releases/download/v3.8.5/liquibase-3.8.5.tar.gz & https://download.microsoft.com/download/4/D/C/4DCD85FA-0041-4D2E-8DD9-833C1873978C/sqljdbc_7.2.2.0_enu.tar.gz
+   echo *********LIST ALL FILES**********
    ls
    sudo tar -zxvf liquibase-3.8.5.tar.gz & sqljdbc_7.2.2.0_enu.tar.gz
    ls
